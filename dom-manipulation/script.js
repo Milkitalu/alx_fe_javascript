@@ -106,6 +106,10 @@ function importFromJsonFile(event) {
   fileReader.readAsText(event.target.files[0]);
 }
 
+function filterQuotes(){
+
+  
+}
 window.addEventListener('load', () => {
   const storedQuotes = localStorage.getItem('quotes');
   if (storedFavorites) {
