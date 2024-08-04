@@ -67,7 +67,7 @@ function showRandomQuote() {
   
 }
 
-function createAddQuoteForm(){
+function addQuote(){
   let text = document.getElementById('newQuoteText').value;
   let category = document.getElementById('newQuoteCategory').value;
   quotes.push({
@@ -77,5 +77,5 @@ function createAddQuoteForm(){
   console.log(quotes);
 }
 qouteBtn.addEventListener('click', showRandomQuote) ;
-addQouteBtn.addEventListener('click', createAddQuoteForm);
+addQouteBtn.addEventListener('click', addQuote);
 
