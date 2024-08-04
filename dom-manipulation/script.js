@@ -52,7 +52,7 @@ let quotes = [
     author: "Max Planck"
   }
 ];
-
+const fileName = "my-download.json";
 const quoteDisplay = document.getElementById("quoteDisplay");
 const qouteBtn = document.getElementById("newQoute");
 const newQoute = document.getElementById("newQouteText");
@@ -77,7 +77,37 @@ function addQuote(){
     category
   });
   createAddQuoteForm.innerHTML = `${text} ${"<br></br>"} Quote-Category:${text} `;
+  localStorage.setItem('quotes', JSON.stringify(quotes));
 }
+
+let downloadData = (function () {
+  const downloadBtn = document.createElement("button");
+  document.body.appendChild(button);
+  button.style = "display: none";
+  return function (data, fileName) {
+      let json = JSON.stringify(data),
+          blob = new Blob([json], {type: "octet/stream"}),
+          url = window.URL.createObjectURL(blob);
+      button.href = url;
+      button.download = fileName;
+      button.click();
+      window.URL.revokeObjectURL(url);
+  };
+}());
+
+function importFromJsonFile(event) {
+  const fileReader = new FileReader();
+  fileReader.onload = function(event) {
+    const importedQuotes = JSON.parse(event.target.result);
+    quotes.push(...importedQuotes);
+    saveQuotes();
+    alert('Quotes imported successfully!');
+  };
+  fileReader.readAsText(event.target.files[0]);
+}
+
 qouteBtn.addEventListener('click', showRandomQuote) ;
 addQouteBtn.addEventListener('click', addQuote);
+downloadData(quotes, fileName);
+
 

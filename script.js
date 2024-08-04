@@ -79,3 +79,22 @@ function addQuote(){
 qouteBtn.addEventListener('click', showRandomQuote) ;
 addQouteBtn.addEventListener('click', addQuote);
 
+let downloadData = (function () {
+  const downloadBtn = document.createElement("button");
+  document.body.appendChild(button);
+  button.style = "display: none";
+  return function (data, fileName) {
+      let json = JSON.stringify(data),
+          blob = new Blob([json], {type: "octet/stream"}),
+          url = window.URL.createObjectURL(blob);
+      button.href = url;
+      button.download = fileName;
+      button.click();
+      window.URL.revokeObjectURL(url);
+  };
+}());
+
+
+const fileName = "my-download.json";
+
+downloadData(quotes, fileName);
