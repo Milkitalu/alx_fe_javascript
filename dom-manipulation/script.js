@@ -68,13 +68,15 @@ function showRandomQuote() {
 }
 
 function addQuote(){
+  const createAddQuoteForm = document.createElement('div');
+  document.body.appendChild(createAddQuoteForm);
   let text = document.getElementById('newQuoteText').value;
   let category = document.getElementById('newQuoteCategory').value;
   quotes.push({
-    author,
+    text,
     category
   });
-  console.log(quotes);
+  createAddQuoteForm.innerHTML = `${text} ${"<br></br>"} Quote-Category:${text} `;
 }
 qouteBtn.addEventListener('click', showRandomQuote) ;
 addQouteBtn.addEventListener('click', addQuote);
