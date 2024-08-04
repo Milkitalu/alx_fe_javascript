@@ -86,7 +86,7 @@ let downloadData = (function () {
   button.style = "display: none";
   return function (data, fileName) {
       let json = JSON.stringify(data),
-          blob = new Blob([json], {type: "octet/stream"}),
+          blob = new Blob([json], {type: "application/json"}),
           url = window.URL.createObjectURL(blob);
       button.href = url;
       button.download = fileName;
