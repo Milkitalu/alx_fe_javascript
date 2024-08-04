@@ -63,7 +63,7 @@ function showRandomQuote() {
   let random = Math.floor(Math.random() * quotes.length);
   console.log(random);
   categoryDisplay= quotes[random].category;
-  quoteDisplay.innerText = `${quotes[random].text} ${"<br></br>"} Quote-Category:${categoryDisplay} `;
+  quoteDisplay.innerHTML = `${quotes[random].text} ${"<br></br>"} Quote-Category:${categoryDisplay} `;
   
 }
 
